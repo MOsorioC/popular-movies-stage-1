@@ -19,15 +19,13 @@ import java.util.List;
 public class MovieAsyncTask extends AsyncTask<String, Void, List<Movie>> {
 
     private final String TAG = MovieAsyncTask.class.getName();
-    private final String API_KEY;
 
     MovieService movieService;
     private OnTaskCompleted onTaskCompleted;
 
-    public MovieAsyncTask(MovieService movieService, String apiKey, OnTaskCompleted onTaskCompleted) {
+    public MovieAsyncTask(MovieService movieService, OnTaskCompleted onTaskCompleted) {
         super();
         this.movieService = movieService;
-        this.API_KEY = apiKey;
         this.onTaskCompleted = onTaskCompleted;
     }
 

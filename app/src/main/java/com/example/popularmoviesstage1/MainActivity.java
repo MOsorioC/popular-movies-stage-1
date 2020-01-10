@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.popularmoviesstage1.adapters.MovieListAdapter;
 import com.example.popularmoviesstage1.model.Movie;
@@ -13,7 +12,6 @@ import com.example.popularmoviesstage1.services.MovieAsyncTask;
 import com.example.popularmoviesstage1.services.MovieService;
 import com.example.popularmoviesstage1.services.OnTaskCompleted;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         this.mLayoutManager = new GridLayoutManager(this, NUM_OF_COLUMNS);
         this.mRecyclerView = findViewById(R.id.recycler_movies);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        movieService = new MovieService("2cbcc01e92b0af5a59142efe75cfe7fb");
+        movieService = new MovieService("");
 
         this.onTaskCompleted = new OnTaskCompleted() {
             @Override
@@ -45,6 +43,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        new MovieAsyncTask(movieService, "2cbcc01e92b0af5a59142efe75cfe7fb", onTaskCompleted).execute(POPULAR_QUERY);
+        new MovieAsyncTask(movieService, onTaskCompleted).execute(POPULAR_QUERY);
     }
 }
