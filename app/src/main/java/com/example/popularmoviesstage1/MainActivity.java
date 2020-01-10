@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.example.popularmoviesstage1.adapters.MovieListAdapter;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private OnTaskCompleted onTaskCompleted;
     private MovieService movieService;
+    private Context context;
 
 
     @Override
@@ -35,11 +37,12 @@ public class MainActivity extends AppCompatActivity {
         this.mRecyclerView = findViewById(R.id.recycler_movies);
         mRecyclerView.setLayoutManager(mLayoutManager);
         movieService = new MovieService("");
+        this.context = this;
 
         this.onTaskCompleted = new OnTaskCompleted() {
             @Override
             public void onTaskCompleted(List<Movie> movieList) {
-                mRecyclerView.setAdapter(new MovieListAdapter(movieList));
+                mRecyclerView.setAdapter(new MovieListAdapter(context, movieList));
             }
         };
 
