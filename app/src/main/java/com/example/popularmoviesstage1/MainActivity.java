@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         this.mLayoutManager = new GridLayoutManager(this, NUM_OF_COLUMNS);
         this.mRecyclerView = findViewById(R.id.recycler_movies);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        movieService = new MovieService("2cbcc01e92b0af5a59142efe75cfe7fb");
+        movieService = new MovieService("");
         this.context = this;
 
         this.onTaskCompleted = new OnTaskCompleted() {
