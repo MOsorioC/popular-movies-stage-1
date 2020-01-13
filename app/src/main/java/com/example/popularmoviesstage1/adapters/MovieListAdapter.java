@@ -1,7 +1,7 @@
 package com.example.popularmoviesstage1.adapters;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.popularmoviesstage1.MovieDetails;
 import com.example.popularmoviesstage1.R;
 import com.example.popularmoviesstage1.model.Movie;
 import com.example.popularmoviesstage1.utils.Constants;
@@ -19,10 +20,12 @@ import java.util.List;
 
 public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
 
-    List<Movie> movies;
+    private List<Movie> movies;
+    private Context context;
 
-    public MovieListAdapter(List<Movie> movies) {
+    public MovieListAdapter(Context context, List<Movie> movies) {
         this.movies = movies;
+        this.context = context;
     }
 
     @NonNull
@@ -41,7 +44,10 @@ public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.Mov
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: CREATE DETAIL VIEW
+                Intent intent = new Intent(context, MovieDetails.class);
+                intent.putExtra(view.getResources().getString(R.string.movie_detail),  movies.get(position));
+
+                context.startActivity(intent);
             }
         });
     }
@@ -55,7 +61,7 @@ public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.Mov
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
+        private ImageView imageView;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,7 +70,7 @@ public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.Mov
         }
 
         void bind(String moviePath) {
-            Picasso.get().load(moviePath).into(imageView);
+            Picasso.get().load(moviePath).error(R.drawable.ic_error_outline_24dp).placeholder(R.drawable.loagind).into(imageView);
         }
     }
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieDetails">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_poster"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/poster_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rating"
+            android:contentDescription="@string/img_poster"
+            />
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toTopOf="@id/img_poster"
+            app:layout_constraintTop_toBottomOf="@id/img_poster"
+            app:layout_constraintRight_toRightOf="parent"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"/>
+
+
+        <TextView
+            android:id="@+id/tv_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_size"
+            app:layout_constraintEnd_toEndOf="@+id/rating"
+            app:layout_constraintLeft_toRightOf="@id/img_poster"
+            app:layout_constraintTop_toBottomOf="@id/rating"
+            tools:text="@string/vote_average" />
+
+        <View
+            android:id="@+id/view_separator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/img_poster"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="@dimen/font_size"
+            app:layout_constraintTop_toBottomOf="@id/view_separator"
+            app:layout_constraintLeft_toLeftOf="@id/view_separator"
+            app:layout_constraintRight_toRightOf="@id/view_separator"
+            tools:text="title" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintLeft_toLeftOf="@id/tv_title"
+            app:layout_constraintRight_toRightOf="@id/tv_title"
+            tools:text="description"/>
+
+        <View
+            android:id="@+id/view_separator2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_date_title"
+            android:layout_width="0dp"
+            android:layout_height="23dp"
+            android:layout_margin="16dp"
+            android:text="@string/release_date"
+            android:textSize="@dimen/font_size"
+            app:layout_constraintTop_toBottomOf="@id/view_separator2"
+            app:layout_constraintLeft_toLeftOf="@id/view_separator2"
+            app:layout_constraintRight_toRightOf="@id/view_separator2"
+             />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_date_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_date_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_title"
+            tools:text="January 09, 2019" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
