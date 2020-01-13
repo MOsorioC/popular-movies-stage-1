@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.popularmoviesstage1.adapters.MovieListAdapter;
 import com.example.popularmoviesstage1.model.Movie;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private OnTaskCompleted onTaskCompleted;
     private MovieService movieService;
+    private TextView connectionTV;
     private Context context;
 
 
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.mLayoutManager = new GridLayoutManager(this, NUM_OF_COLUMNS);
         this.mRecyclerView = findViewById(R.id.recycler_movies);
+        this.connectionTV = findViewById(R.id.tv_not_connection);
         mRecyclerView.setLayoutManager(mLayoutManager);
         movieService = new MovieService("");
         this.context = this;
@@ -54,8 +58,21 @@ public class MainActivity extends AppCompatActivity {
         };
 
         if (isConnected()) {
+            showRecyclerView();
             new MovieAsyncTask(movieService, onTaskCompleted).execute(POPULAR_QUERY);
+        } else {
+            showConnectionError();
         }
+    }
+
+    private void showConnectionError() {
+        mRecyclerView.setVisibility(View.GONE);
+        connectionTV.setVisibility(View.VISIBLE);
+    }
+
+    private void showRecyclerView() {
+        connectionTV.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -70,12 +87,18 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.popular:
                 if (isConnected()) {
+                    showRecyclerView();
                     new MovieAsyncTask(movieService, onTaskCompleted).execute(POPULAR_QUERY);
+                } else {
+                    showConnectionError();
                 }
                 return true;
             case R.id.top_rated:
                 if (isConnected()) {
+                    showRecyclerView();
                     new MovieAsyncTask(movieService, onTaskCompleted).execute(TOP_RATED_QUERY);
+                } else {
+                    showConnectionError();
                 }
                 return true;
                 default:

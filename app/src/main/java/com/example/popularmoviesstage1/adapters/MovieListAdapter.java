@@ -61,7 +61,7 @@ public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.Mov
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+        private final ImageView imageView;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);

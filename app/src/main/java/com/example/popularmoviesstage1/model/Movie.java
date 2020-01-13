@@ -15,7 +15,7 @@ public class Movie implements Parcelable {
 
     }
 
-    protected Movie(Parcel in) {
+    private Movie(Parcel in) {
         title = in.readString();
         posterPath = in.readString();
         overview = in.readString();

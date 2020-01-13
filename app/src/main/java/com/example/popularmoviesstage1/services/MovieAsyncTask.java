@@ -20,8 +20,8 @@ public class MovieAsyncTask extends AsyncTask<String, Void, List<Movie>> {
 
     private final String TAG = MovieAsyncTask.class.getName();
 
-    MovieService movieService;
-    private OnTaskCompleted onTaskCompleted;
+    private final MovieService movieService;
+    private final OnTaskCompleted onTaskCompleted;
 
     public MovieAsyncTask(MovieService movieService, OnTaskCompleted onTaskCompleted) {
         super();
