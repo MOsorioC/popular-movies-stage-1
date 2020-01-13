@@ -61,7 +61,7 @@ public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.Mov
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
+        private ImageView imageView;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +70,7 @@ public class MovieListAdapter  extends RecyclerView.Adapter<MovieListAdapter.Mov
         }
 
         void bind(String moviePath) {
-            Picasso.get().load(moviePath).into(imageView);
+            Picasso.get().load(moviePath).error(R.drawable.ic_error_outline_24dp).placeholder(R.drawable.loagind).into(imageView);
         }
     }
 }

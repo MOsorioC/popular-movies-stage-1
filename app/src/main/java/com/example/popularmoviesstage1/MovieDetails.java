@@ -42,7 +42,11 @@ public class MovieDetails extends AppCompatActivity {
 
     private void inflateView(Movie movie) {
         setTitle(movie.getTitle());
-        Picasso.get().load(Constants.IMAGE_BASE_URL + movie.getPosterPath()).into(imageViewPoster);
+        Picasso.get()
+                .load(Constants.IMAGE_BASE_URL + movie.getPosterPath())
+                .placeholder(R.drawable.loagind)
+                .error(R.drawable.ic_error_outline_24dp)
+                .into(imageViewPoster);
         titleTextView.setText(movie.getTitle());
         descriptionTextView.setText(movie.getOverview());
         dateTextView.setText(movie.getReleaseDate());
